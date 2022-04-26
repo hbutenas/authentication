@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 const CustomError = require("../../errors");
 const {hashPassword, validatePassword} = require("../../utils/bcrypt/bcrypt.utils");
 const {assignCookiesToResponse, deleteCookiesFromResponse} = require("../../utils/jwt/jwt.utils");
-
+const {sendEmail} = require("../../utils/nodemailer/nodemailer.utils");
 const registerService = async (requestBody) => {
     const {email, username, password, firstName, lastName} = requestBody;
 
@@ -75,4 +75,10 @@ const logoutService = async (Response) => {
     return {message: "User successfully logged out"};
 };
 
-module.exports = {registerService, loginService, logoutService};
+const forgotPasswordService = async (requestBody) => {
+    const {email} = requestBody;
+
+    const sentEmail = await sendEmail(email);
+};
+
+module.exports = {registerService, loginService, logoutService, forgotPasswordService};
