@@ -78,7 +78,9 @@ const logoutService = async (Response) => {
 const forgotPasswordService = async (requestBody) => {
     const {email} = requestBody;
 
-    const sentEmail = await sendEmail(email);
+    await sendEmail(email);
+
+    return {message: "Instructions how to reset password are sent"};
 };
 
 module.exports = {registerService, loginService, logoutService, forgotPasswordService};
