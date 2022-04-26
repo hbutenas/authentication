@@ -3,7 +3,12 @@ const router = express.Router();
 const {check} = require("express-validator");
 
 // controllers
-const {registerController, loginController, logoutController} = require("../../controllers/auth/auth.controller");
+const {
+    registerController,
+    loginController,
+    logoutController,
+    forgotPasswordController
+} = require("../../controllers/auth/auth.controller");
 
 // middlewares
 
@@ -27,6 +32,10 @@ router.post("/login", [
 ], loginController);
 
 router.post("/logout", logoutController);
+
+router.post("/forgot-password", [
+    check("email").not().isEmpty().isEmail(),
+], forgotPasswordController);
 
 module.exports = router;
 

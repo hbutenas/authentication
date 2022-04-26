@@ -1,6 +1,11 @@
 const {validationResult} = require("express-validator");
 const {StatusCodes} = require("http-status-codes");
-const {registerService, loginService, logoutService} = require("../../services/auth/auth.services");
+const {
+    registerService,
+    loginService,
+    logoutService,
+    forgotPasswordService
+} = require("../../services/auth/auth.services");
 
 const registerController = async (req, res) => {
     const errors = validationResult(req);
@@ -29,4 +34,14 @@ const logoutController = async (req, res) => {
     res.status(StatusCodes.OK).json({response});
 };
 
-module.exports = {registerController, loginController, logoutController};
+const forgotPasswordController = async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(StatusCodes.BAD_REQUEST).json({errors: errors.array()});
+    }
+
+    const response = await forgotPasswordService(req.body);
+    res.status(StatusCodes.OK).json({response});
+};
+module.exports = {registerController, loginController, logoutController, forgotPasswordController};
