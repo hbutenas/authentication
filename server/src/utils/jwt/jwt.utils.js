@@ -31,7 +31,5 @@ const assignCookiesToResponse = async (payload, Response) => {
 const deleteCookiesFromResponse = async (Response) => {
     Response.clearCookie("access_token");
     Response.clearCookie("refresh_token");
-
-    return {message: "User successfully logged out."};
 };
 module.exports = {generateJwtTokens, verifyJwtToken, assignCookiesToResponse, deleteCookiesFromResponse};
