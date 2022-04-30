@@ -41,7 +41,7 @@ const forgotPasswordController = async (req, res) => {
         return res.status(StatusCodes.BAD_REQUEST).json({errors: errors.array()});
     }
 
-    const response = await forgotPasswordService(req.body);
+    const response = await forgotPasswordService(req);
     res.status(StatusCodes.OK).json({response});
 };
 module.exports = {registerController, loginController, logoutController, forgotPasswordController};
