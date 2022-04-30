@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {check} = require("express-validator");
+const {check, query} = require("express-validator");
 
 // controllers
 const {
@@ -34,7 +34,10 @@ router.post("/login", [
 router.post("/logout", logoutController);
 
 router.post("/forgot-password", [
-    check("email").not().isEmpty().isEmail(),
+    check("password").optional().isString(),
+    check("email").optional().isEmail(),
+    query("authKey").optional().isString(),
+    query("email").optional().isEmail(),
 ], forgotPasswordController);
 
 module.exports = router;
