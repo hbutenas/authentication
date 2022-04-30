@@ -189,6 +189,7 @@ const compareExpirationTime = async (expirationTime) => {
     });
 
     // is the request still valid?
+    // TODO - What if the request comes the next day but earlier than the currentTime? Might be the issue.
     if (currentTime > expiresAt) throw new CustomError.BadRequest("Password reset expired. Please request one more time");
 
     return true;
