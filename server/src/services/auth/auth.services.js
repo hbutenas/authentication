@@ -176,6 +176,7 @@ const resetPasswordHelper = async (existingPasswordRequest, password) => {
 const compareExpirationTime = async (expirationTime) => {
     // get expiry date
     const expiresAt = expirationTime.expiresAt.toLocaleTimeString("it-IT", {
+        day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit"
@@ -183,6 +184,7 @@ const compareExpirationTime = async (expirationTime) => {
 
     // current time
     const currentTime = new Date().toLocaleTimeString("it-It", {
+        day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit"
